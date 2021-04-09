@@ -78,12 +78,14 @@ export default {
             }
           })
           .catch((error) => {
+            // eslint-disable-next-line
             console.error(error);
           });
       } else {
         this.password = '';
         this.passwordConfirm = '';
 
+        // eslint-disable-next-line
         alert('Passwords do not match');
       }
     },

@@ -2,7 +2,7 @@
     <div>
         <h4>Login</h4>
         <form>
-            <label for="email" >E-Mail Address</label>
+            <label for="email">E-Mail Address</label>
             <div>
                 <input id="email" type="email" v-model="email" required autofocus>
             </div>
@@ -53,10 +53,13 @@ export default {
             }
           })
           .catch((error) => {
-            console.error(error.response);
+            console.log(error);
           });
       }
     },
   },
 };
 </script>
+<style scoped>
+
+</style>
