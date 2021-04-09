@@ -7,10 +7,13 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
+    "server": "node ../backend/index",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "lint:fix": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -57,7 +60,11 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-plugin-typescript": "~4.5.11",
+    "@vue/cli-plugin-unit-jest": "^4.5.11",
+    "@vue/cli-service": "^4.5.12"
   },
   "engines": {
     "node": ">= 6.0.0",
