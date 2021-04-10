@@ -4,7 +4,7 @@ const express = require('express');
 let app = express();
 let apiRoutes = require("./entryRouter")
 let userRoutes = require("./userRouter")
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8081;
 
 // Launch app to the specified port
 app.listen(port, function() {
