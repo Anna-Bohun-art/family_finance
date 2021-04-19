@@ -1,7 +1,7 @@
-import Vue from 'vue';
 import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router';
-import VueResource from "vue-resource";
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 // styles
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -28,10 +28,7 @@ import Profile from '@/components/views/auth/Profile';
 import Index from '@/components/views/auth/Index';
 import Newproducts from '@/components/views/auth/Newproducts';
 import Report from '@/components/views/auth/Report';
-
-// Vue resource 
-
-Vue.use(VueResource);
+import Confirmation from '@/components/views/auth/Confirmation';
 
 // routes
 
@@ -69,9 +66,17 @@ const routes = [
       {
         path: '/register',
         component: Register,
+      },
+      {
+        path: '/confirm',
+        component: Confirmation,
       }
     ],
 
+  },
+  {
+  path: '/logout',
+  component: Login,
   },
   {
     path: '/profile',
@@ -121,4 +126,4 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(VueAxios, axios).mount('#app');

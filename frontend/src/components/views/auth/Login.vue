@@ -81,13 +81,12 @@
   </div>
 </template>
 <script>
-// import registerBg from "@/assets/img/register_bg_2.png";
 export default {
   name: 'Login',
   data() {
     return {
-      email: '',
-      password: '',
+      email: 'test@test.com',
+      password: 'test',
     };
   },
   methods: {
@@ -95,23 +94,18 @@ export default {
       console.log('handleSubmit');
       e.preventDefault();
       if (this.email.length > 0 && this.password.length > 0) {
-        const log = `email: ${this.email} - password: ${this.password}`;
-        console.log(log);
         this.$http.post('http://localhost:8081/login', {
           email: this.email,
           password: this.password,
         })
           .then((response) => {
             console.log('Success login');
-            const isAdmin = response.data.user.is_admin;
             localStorage.setItem('user', JSON.stringify(response.data.user));
             localStorage.setItem('jwt', response.data.token);
             if (localStorage.getItem('jwt') != null) {
               this.$emit('loggedIn');
               if (this.$route.params.nextUrl != null) {
                 this.$router.push(this.$route.params.nextUrl);
-              } else if (isAdmin === 1) {
-                this.$router.push('admin');
               } else {
                 this.$router.push('dashboard');
               }

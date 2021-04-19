@@ -1,5 +1,6 @@
 "use strict";
 const express = require('express');
+var cors = require('cors')
 
 let app = express();
 let apiRoutes = require("./entryRouter")
@@ -11,18 +12,10 @@ app.listen(port, function() {
     console.log("Running on Port "+ port);
 })
 
-//import mongoose
+// import mongoose
 let mongoose = require('mongoose');
 
-// CORS middleware
-const allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-}
-
-app.use(allowCrossDomain)
+app.use(cors())
 
 app.use(express.urlencoded({
     extended: false
