@@ -14,7 +14,7 @@ import App from '@/App';
 // layouts
 
 // import Admin from '@/layouts/Admin.vue';
-import Auth from '@/components/layouts/Auth';
+import Auth from '@/components/pages/Auth';
 
 
 // views for Auth layout
@@ -24,29 +24,41 @@ import Register from '@/components/views/auth/Register';
 
 // views without layouts
 
-import Profile from '@/components/views/auth/Profile';
-import Index from '@/components/views/auth/Index';
-import Newproducts from '@/components/views/auth/Newproducts';
-import Report from '@/components/views/auth/Report';
-import Confirmation from '@/components/views/auth/Confirmation';
-
+import Profile from '@/components/views/views/Profile';
+import Index from '@/components/views/views/Index';
+import Newproducts from '@/components/views/Newproducts';
+import Report from '@/components/views/Report';
+import Dashboard from '@/components/views/Dashboard';
+import Userspace from '@/components/pages/UserSpace';
+import Logout from '@/components/views/Logout'
 // routes
 
 const routes = [
   {
     path: '/user',
-    redirect: '/user/',
-    component: Auth,
+    redirect: '/dashboard',
+    component: Userspace,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
-        path: '/user/newProducts',
+        path: '/dashboard',
+        component: Dashboard,
+      },
+      {
+        path: '/newproducts',
         component: Newproducts,
       },
       {
-        path: '/user/report',
+        path: '/report',
         component: Report,
       },
-    ],
+      {
+        path: '/profile',
+        component: Profile,
+      }
+    ]
   },
   {
     path: '/',
@@ -57,6 +69,7 @@ const routes = [
   },
   {
     path: '/auth',
+    redirect: '/login',
     component: Auth,
     children: [
       {
@@ -66,24 +79,12 @@ const routes = [
       {
         path: '/register',
         component: Register,
-      },
-      {
-        path: '/confirm',
-        component: Confirmation,
       }
     ],
-
   },
   {
-  path: '/logout',
-  component: Login,
-  },
-  {
-    path: '/profile',
-    component: Profile,
-    meta: {
-      requiresAuth: true
-    }
+    path: '/logout',
+    component: Logout,
   },
   
   { path: '/:pathMatch(.*)*', redirect: '/' },
