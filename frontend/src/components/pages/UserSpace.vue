@@ -1,22 +1,17 @@
 <template>
   <div>
-    <navbar />
-    <main>
-      <section class="relative w-full h-full py-40 min-h-screen">
-        <div
-          class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
-          :style="`background-image: url('${registerBg}');`"
-        ></div>
+    <side-bar-menu />
+    <div class="relative md:ml-64 bg-blueGray-100">
+      <div class="px-4 md:px-10 pt-8 mx-auto w-full">
         <router-view />
-        <side-bar-menu />
-        <footer-small absolute />
-      </section>
-    </main>
+        <Footer />
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import SideBarMenu from "@/components/bars/SideBarMenu";
-import FooterSmall from "@/components/footers/FooterSmall";
+import Footer from "@/components/footers/Footer";
 import registerBg from "@/assets/image/register_bg.png";
 
 export default {
@@ -27,7 +22,7 @@ export default {
   },
   components: {
     SideBarMenu,
-    FooterSmall,
+    Footer,
   },
 };
 </script>

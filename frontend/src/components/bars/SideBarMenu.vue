@@ -13,15 +13,8 @@
       >
         <i class="fas fa-bars"></i>
       </button>
-      <!-- Brand -->
-      <router-link
-        class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-        to="/"
-      >
-        Profile
-      </router-link>
       <!-- User -->
-      <ul class="md:hidden items-center flex flex-wrap list-none">
+      <ul class="md:hidden items-left flex flex-wrap list-none">
         <li class="inline-block relative">
           <notification-dropdown />
         </li>
@@ -38,51 +31,25 @@
         <div
           class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
         >
-          <div class="flex flex-wrap">
-            <div class="w-6/12">
-              <router-link
-                class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                to="/"
-              >
-                Vue Notus
-              </router-link>
-            </div>
-            <div class="w-6/12 flex justify-end">
-              <button
-                type="button"
-                class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-                v-on:click="toggleCollapseShow('hidden')"
-              >
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
         </div>
-        <!-- Form -->
-        <form class="mt-6 mb-4 md:hidden">
-          <div class="mb-3 pt-0">
-            <input
-              type="text"
-              placeholder="Search"
-              class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-            />
-          </div>
-        </form>
 
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
-        <h6
-          class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-        >
-          Dashboard
-        </h6>
+        <button 
+          class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+          type="button" 
+          @click="navigateToDashboard">Dashboard
+        </button>
         <!-- Navigation -->
 
-        <!-- <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <hr class="my-4 md:min-w-full" />
+        <img alt="..." class="w-full rounded-full align-middle border-none shadow-lg" src="@/assets/image/team-4-470x470.png">
+        <hr class="my-4 md:min-w-full" />
+        <ul class="md:flex-col md:min-w-full flex flex-col list-none">
           <li class="items-center">
             <router-link
-              to="/admin/dashboard"
+              to="/dashboard"
               v-slot="{ href, navigate, isActive }"
             >
               <a
@@ -99,38 +66,14 @@
                   class="fas fa-tv mr-2 text-sm"
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Dashboard
+                Dashboard1
               </a>
             </router-link>
           </li>
 
           <li class="items-center">
             <router-link
-              to="/admin/settings"
-              v-slot="{ href, navigate, isActive }"
-            >
-              <a
-                :href="href"
-                @click="navigate"
-                class="text-xs uppercase py-3 font-bold block"
-                :class="[
-                  isActive
-                    ? 'text-emerald-500 hover:text-emerald-600'
-                    : 'text-blueGray-700 hover:text-blueGray-500',
-                ]"
-              >
-                <i
-                  class="fas fa-tools mr-2 text-sm"
-                  :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
-                ></i>
-                Settings
-              </a>
-            </router-link>
-          </li>
-
-          <li class="items-center">
-            <router-link
-              to="/admin/tables"
+              to="/newentry"
               v-slot="{ href, navigate, isActive }"
             >
               <a
@@ -147,13 +90,13 @@
                   class="fas fa-table mr-2 text-sm"
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Tables
+                NewEntry
               </a>
             </router-link>
           </li>
 
-          <li class="items-center">
-            <router-link to="/admin/maps" v-slot="{ href, navigate, isActive }">
+          <li class="items-left">
+            <router-link to="/report" v-slot="{ href, navigate, isActive }">
               <a
                 :href="href"
                 @click="navigate"
@@ -168,30 +111,11 @@
                   class="fas fa-map-marked mr-2 text-sm"
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Maps
+                Report
               </a>
             </router-link>
           </li>
         </ul>
-        -->
-
-        <!-- Divider -->
-        <hr class="my-4 md:min-w-full" />
-        <!-- Heading -->
-        <h6
-          class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-        >
-          NewEntry
-        </h6>
-
-        <!--Divider -->
-        <hr class="my-4 md:min-w-full" />
-        <!-- Heading -->
-        <h6
-          class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-        >
-          Report
-        </h6>
 
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
@@ -220,6 +144,9 @@ export default {
       localStorage.removeItem("user");
       localStorage.removeItem("jwt");
       this.$router.push('login');
+    },
+    navigateToDashboard() {
+      this.$router.push('dashboard');
     }
   },
   components: {

@@ -2,7 +2,7 @@
   <SideBarMenu />
 </template>
 <script>
-import SideBarMenu from "@/components/views/auth/SideBarMenu.vue";
+import SideBarMenu from "@/components/bars/SideBarMenu.vue";
 export default {
   methods: {
 

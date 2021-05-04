@@ -19,14 +19,13 @@ import Auth from '@/components/pages/Auth';
 
 // views for Auth layout
 
-import Login from '@/components/views/auth/Login';
-import Register from '@/components/views/auth/Register';
+import Login from '@/components/views/Login';
+import Register from '@/components/views/Register';
 
 // views without layouts
 
-import Profile from '@/components/views/views/Profile';
-import Index from '@/components/views/views/Index';
-import Newproducts from '@/components/views/Newproducts';
+import Profile from '@/components/views/Profile';
+import Newentry from '@/components/views/Newentry';
 import Report from '@/components/views/Report';
 import Dashboard from '@/components/views/Dashboard';
 import Userspace from '@/components/pages/UserSpace';
@@ -35,7 +34,7 @@ import Logout from '@/components/views/Logout'
 
 const routes = [
   {
-    path: '/user',
+    path: '/',
     redirect: '/dashboard',
     component: Userspace,
     meta: {
@@ -47,8 +46,8 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: '/newproducts',
-        component: Newproducts,
+        path: '/newentry',
+        component: Newentry,
       },
       {
         path: '/report',
@@ -59,13 +58,6 @@ const routes = [
         component: Profile,
       }
     ]
-  },
-  {
-    path: '/',
-    component: Index,
-    meta: {
-      requiresAuth: true
-    }
   },
   {
     path: '/auth',
