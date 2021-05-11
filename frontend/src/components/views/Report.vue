@@ -1,21 +1,16 @@
 <template>
-  <div>
-    <div class="flex flex-wrap">
-      <h3 class="font-semibold text-base text-blueGray-700">
-        Report
-      </h3>
+  <div class="flex flex-wrap mt-4">
+    <div class="w-full mb-12 px-4">
+      <Table />
     </div>
   </div>
 </template>
 <script>
+import Table from "@/components/views/Table.vue";
+
 export default {
-  name: 'Report',
   components: {
-    /* CardLineChart,
-    CardBarChart,
-    CardPageVisits,
-    CardSocialTraffic,
-    */
+    Table,
   },
 };
 </script>

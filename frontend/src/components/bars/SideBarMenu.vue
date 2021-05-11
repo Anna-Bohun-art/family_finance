@@ -34,13 +34,7 @@
         </div>
 
         <!-- Divider -->
-        <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
-        <button 
-          class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-          type="button" 
-          @click="navigateToDashboard">Dashboard
-        </button>
         <!-- Navigation -->
 
         <hr class="my-4 md:min-w-full" />
@@ -63,10 +57,10 @@
                 ]"
               >
                 <i
-                  class="fas fa-tv mr-2 text-sm"
+                  class="fas fa-tools mr-2 text-sm"
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
                 ></i>
-                Dashboard1
+                Dashboard
               </a>
             </router-link>
           </li>
@@ -89,6 +83,7 @@
                 <i
                   class="fas fa-table mr-2 text-sm"
                   :class="[isActive ? 'opacity-75' : 'text-blueGray-300']"
+                  @click="navigateToNewentry"
                 ></i>
                 NewEntry
               </a>
@@ -147,6 +142,9 @@ export default {
     },
     navigateToDashboard() {
       this.$router.push('dashboard');
+    }, 
+    navigateToNewentry() {
+      this.$router.push('newentry');
     }
   },
   components: {

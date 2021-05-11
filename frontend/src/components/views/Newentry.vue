@@ -7,41 +7,93 @@
         >
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
             <div class="text-blueGray-400 text-center mb-3 font-bold">
-              <small>Sign in:</small>
+              <small>New Entry</small>
             </div>
             <form>
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
                 >
                   Date
                 </label>
                 <input
                   type="date"
+                  v-model="date"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Date"
-                  v-model="date"
                 />
               </div>
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
                 >
                   Store
                 </label>
                 <input
                   type="store"
+                  v-model="store"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Store"
-                  v-model="store"
                 />
               </div>
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
+                >
+                  Type
+                </label>
+                <div class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                  <a
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    ref="btnDropdownRef"
+                    v-on:click="toggleDropdown($event)"
+                  >
+                    {{ selected }}
+                  </a>
+                </div>
+                <select 
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  ref="popoverDropdownRef" 
+                  v-bind:class="{
+                    hidden: !dropdownPopoverShow,
+                    block: dropdownPopoverShow,
+                  }"
+                >
+                  <option
+                    v-on:click="getSelectedType($event, 'Food')"
+                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+                  >
+                    Food
+                  </option>
+                  <option
+                    v-on:click="getSelectedType($event, 'Kids')"
+                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  >
+                    Kids
+                  </option>
+                  <option
+                    v-on:click="getSelectedType($event, 'House')"
+                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  >
+                    House
+                  </option>
+                  <option
+                    v-on:click="getSelectedType($event, 'Cars')"
+                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  >
+                    Cars
+                  </option>
+                  <option
+                    v-on:click="getSelectedType($event, 'Else')"
+                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  >
+                    Else
+                  </option>
+                </select>
+              </div>
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 >
                   Value
                 </label>
@@ -51,61 +103,6 @@
                   placeholder="Value"
                   v-model="value"
                 />
-              </div>
-              <div class="relative w-full mb-3">
-                <label
-                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Type
-                </label>
-                <div class="relative inline-flex align-middle w-full">
-                  <a
-                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    ref="btnDropdownRef"
-                    v-on:click="toggleDropdown($event)"
-                  >
-                    {{ selected }}
-                  </a>
-                </div>
-                <div 
-                  class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                  ref="popoverDropdownRef" 
-                  v-bind:class="{
-                    hidden: !dropdownPopoverShow,
-                    block: dropdownPopoverShow,
-                  }">
-                  <div
-                    v-on:click="getSelectedType($event, 'Food')"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                    Food
-                  </div>
-                  <div
-                    v-on:click="getSelectedType($event, 'Kids')"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                    Kids
-                  </div>
-                  <div 
-                    v-on:click="getSelectedType($event, 'House')"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                    House
-                  </div>
-                  <div
-                    v-on:click="getSelectedType($event, 'Cars')"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                    Cars
-                  </div>
-                  <div
-                    v-on:click="getSelectedType($event, 'Else')"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                    Else
-                  </div>
-                </div>
               </div>
               <div class="text-center mt-6">
                 <button
@@ -128,16 +125,9 @@ import { createPopper } from "@popperjs/core";
 
 export default {
   name: 'NewEntry',
-  data() {
-    return {
-      date: '',
-      value: '',
-      type: '',
-      description: '',
+  data: () => ({ date: "", store: "", value:"", allData: [] }),
       dropdownPopoverShow: false,
-      selected: 'Select'
-    };
-  },
+      selected: 'Select',
   methods: {
     getSelectedType(event, selectedType) {
         this.selected = selectedType;
@@ -156,30 +146,22 @@ export default {
       }
     },
     handleSubmit(e) {
-      console.log('handleSubmit');
+      console.log(`$date`);
       e.preventDefault();
-      if (this.email.length > 0 && this.password.length > 0) {
-        this.$http.post('http://localhost:8081/login', {
-          email: this.email,
-          password: this.password,
+      if (this.date !== null && this.store !== null && this.type !== null && this.value !== null) {
+        this.allData.push({ date: this.date, store: this.store, selectedType: this.selectedType, value: this.value });
+        this.clearForm();
+        this.$http.post('http://localhost:8081/report', {
         })
-          .then((response) => {
-            console.log('Success login');
-            localStorage.setItem('user', JSON.stringify(response.data.user));
-            localStorage.setItem('jwt', response.data.token);
-            if (localStorage.getItem('jwt') != null) {
-              this.$emit('loggedIn');
-              if (this.$route.params.nextUrl != null) {
-                this.$router.push(this.$route.params.nextUrl);
-              } else {
-                this.$router.push('profile');
-              }
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      } else {
+        console.log("error");
       }
+    },
+    clearForm() {
+      this.date = "";
+      this.store = "";
+      this.selectedType = "";
+      this.value = "";
     },
   },
 };
