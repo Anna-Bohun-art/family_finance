@@ -42,29 +42,19 @@
                 >
                   Type
                 </label>
-                <div class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                  <a
-                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    ref="btnDropdownRef"
-                    v-on:click="toggleDropdown($event)"
-                  >
-                    {{ selected }}
-                  </a>
-                </div>
                 <select 
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  ref="popoverDropdownRef" 
-                  v-bind:class="{
-                    hidden: !dropdownPopoverShow,
-                    block: dropdownPopoverShow,
-                  }"
+                  v-model="selected"
                 >
                   <option
-                    v-on:click="getSelectedType($event, 'Food')"
+                    v-for="product of products"
+                    v-bind:value="product.id"
+                    v-bind:key="product.name"
                     class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
                   >
-                    Food
+                  {{product.name}}
                   </option>
+                  <!--
                   <option
                     v-on:click="getSelectedType($event, 'Kids')"
                     class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -89,6 +79,7 @@
                   >
                     Else
                   </option>
+                  -->
                 </select>
               </div>
               <div class="relative w-full mb-3">
@@ -112,6 +103,7 @@
                 >
                   Submit
                 </button>
+                <h1>{{selected.text}}</h1>
               </div>
             </form>
           </div>
@@ -125,11 +117,23 @@ import { createPopper } from "@popperjs/core";
 
 export default {
   name: 'NewEntry',
-  data: () => ({ date: "", store: "", value:"", allData: [] }),
-      dropdownPopoverShow: false,
-      selected: 'Select',
+  data: () => ({ 
+    date: "", 
+    store: "", 
+    value:"", 
+    allData: [] ,
+    dropdownPopoverShow: false,
+    selected: 'Select',
+    products: [
+      {id: 1, name: 'kids'},
+      {id: 2, name: 'house'},
+      {id: 3, name: 'cars'},
+      {id: 4, name: 'else'}
+    ]
+  }),
   methods: {
     getSelectedType(event, selectedType) {
+        console.log(selectedType);
         this.selected = selectedType;
         this.toggleDropdown(event);
     },
@@ -146,13 +150,12 @@ export default {
       }
     },
     handleSubmit(e) {
-      console.log(`$date`);
       e.preventDefault();
       if (this.date !== null && this.store !== null && this.type !== null && this.value !== null) {
         this.allData.push({ date: this.date, store: this.store, selectedType: this.selectedType, value: this.value });
-        this.clearForm();
-        this.$http.post('http://localhost:8081/report', {
-        })
+        //this.clearForm();
+        console.log(this.date);
+        console.log(this.selected);
       } else {
         console.log("error");
       }
