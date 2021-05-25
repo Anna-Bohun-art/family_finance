@@ -33,7 +33,7 @@
                   type="store"
                   v-model="store"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  placeholder="Store"
+                  placeholder="Store"   
                 />
               </div>
               <div class="relative w-full mb-3">
@@ -42,45 +42,26 @@
                 >
                   Type
                 </label>
-                <select 
+                <Multiselect 
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  v-model="selected"
+                  v-model="type" 
+                  placeholder="Select one" 
+                  :options="options"
+                  trackBy="name" 
+                  label="name"
+                  :searchable="true"
                 >
-                  <option
-                    v-for="product of products"
-                    v-bind:value="product.id"
-                    v-bind:key="product.name"
-                    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                  >
-                  {{product.name}}
-                  </option>
-                  <!--
-                  <option
-                    v-on:click="getSelectedType($event, 'Kids')"
-                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  >
-                    Kids
-                  </option>
-                  <option
-                    v-on:click="getSelectedType($event, 'House')"
-                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  >
-                    House
-                  </option>
-                  <option
-                    v-on:click="getSelectedType($event, 'Cars')"
-                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  >
-                    Cars
-                  </option>
-                  <option
-                    v-on:click="getSelectedType($event, 'Else')"
-                    class="text-blueGray-600 font-bold w-full bg-white text-sm px-3 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  >
-                    Else
-                  </option>
-                  -->
-                </select>
+                <template v-slot:singleLabel="{ type }">
+                  <div class="multiselect-single-label">
+                    <img height="26" style="margin: 0 6px 0 0;" :src="value.icon"> {{ type.name }}
+                  </div>
+                </template>
+                <template v-slot:option="{ option }">
+                  <img height="22" style="margin: 0 6px 0 0;">{{ option.name }}
+                </template>
+                  <!--<template slot="singleLabel" slot-scope="{ option }"><strong>{{ option.id }}</strong> is written in<strong>  {{ option.name }}</strong></template>-->
+                  
+                </Multiselect>
               </div>
               <div class="relative w-full mb-3">
                 <label
@@ -103,7 +84,6 @@
                 >
                   Submit
                 </button>
-                <h1>{{selected.text}}</h1>
               </div>
             </form>
           </div>
@@ -113,59 +93,52 @@
   </div>
 </template>
 <script>
-import { createPopper } from "@popperjs/core";
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'NewEntry',
-  data: () => ({ 
-    date: "", 
-    store: "", 
-    value:"", 
-    allData: [] ,
-    dropdownPopoverShow: false,
-    selected: 'Select',
-    products: [
-      {id: 1, name: 'kids'},
-      {id: 2, name: 'house'},
-      {id: 3, name: 'cars'},
-      {id: 4, name: 'else'}
-    ]
-  }),
+  components: { Multiselect },
+  data() { 
+    return {
+      options: [
+        'kids','house','cars','else'
+      ],
+      date: "", 
+      store: "",
+      type: null, 
+      value: "", 
+      allData: [],
+    };
+  },
   methods: {
-    getSelectedType(event, selectedType) {
-        console.log(selectedType);
-        this.selected = selectedType;
-        this.toggleDropdown(event);
-    },
-    toggleDropdown(e) {
-      console.log(e);
-      e.preventDefault();
-      if (this.dropdownPopoverShow) {
-        this.dropdownPopoverShow = false;
-      } else {
-        this.dropdownPopoverShow = true;
-        createPopper(this.$refs.btnDropdownRef, this.$refs.popoverDropdownRef, {
-          placement: "bottom-start",
-        });
-      }
-    },
-    handleSubmit(e) {
+    async handleSubmit(e) {
       e.preventDefault();
       if (this.date !== null && this.store !== null && this.type !== null && this.value !== null) {
-        this.allData.push({ date: this.date, store: this.store, selectedType: this.selectedType, value: this.value });
-        //this.clearForm();
-        console.log(this.date);
-        console.log(this.selected);
-      } else {
-        console.log("error");
-      }
+        this.allData.push( [this.date, this.store, this.type, this.value] );
+        console.log(this.allData);
+        this.$http.post('http://localhost:8081/report', {
+          date: this.date,
+          store: this.store,
+          type: this.type,
+          value: this.value,
+        })
+          .then((response) => {
+            console.log('Success imput!');
+            console.log(response.data);
+            this.clearForm();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        }
+      },
     },
     clearForm() {
       this.date = "";
       this.store = "";
-      this.selectedType = "";
+      this.type = "";
       this.value = "";
     },
-  },
-};
+  }
 </script>
+<style src="@vueform/multiselect/themes/default.css"></style>

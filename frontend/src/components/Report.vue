@@ -1,6 +1,5 @@
 <template>
     <div class="hello">
-        <h1>This is homepage</h1>
         <h2>{{msg}}</h2>
     </div>
 </template>

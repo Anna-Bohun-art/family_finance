@@ -76,7 +76,9 @@
   </div>
 </template>
 <script>
-//import TableDropdown from "@/components/Dropdowns/TableDropdown.vue";
+
+import {allData} from 'Newentry.vue'
+
 
 export default {
   data() {
@@ -85,7 +87,8 @@ export default {
     };
   },
   components: {
-    //TableDropdown
+    allData : Array,
+    required: false
   },
   props: {
     color: {

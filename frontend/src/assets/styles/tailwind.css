@@ -1826,6 +1826,8 @@ select {
 
 .place-items-auto {
   place-items: auto;
+  opacity: 1;
+  color: #a1a1aa;
 }
 
 .place-items-start {
@@ -4261,8 +4263,24 @@ select {
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: black; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+.selectHide {
+  display: none;
+}
+.options {
+  border-radius: 0px 0px 6px 6px;
+  overflow: hidden;
+  border-right: 1px solid rgba(6, 95, 70, var(--tw-bg-opacity));
+  border-left: 1px solid rgba(6, 95, 70, var(--tw-bg-opacity));
+  border-bottom: 1px solid rgba(6, 95, 70, var(--tw-bg-opacity));
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.options:hover{
+  background-color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
