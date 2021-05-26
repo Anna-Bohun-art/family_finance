@@ -20,10 +20,10 @@ exports.index = function (req, res) {
 //For creating new entry
 exports.add = function (req, res) {
     var entry = new Entry();
-    entry.name = req.body.name? req.body.name: entry.name;
-    entry.email = req.body.email;
-    entry.phone = req.body.phone;
-    entry.address = req.body.address;
+    entry.date = req.body.date;
+    entry.store = req.body.store;
+    entry.type = req.body.type;
+    entry.value = req.body.value;
 
     //Save and check error
     entry.save(function (err) {

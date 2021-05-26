@@ -76,10 +76,6 @@
   </div>
 </template>
 <script>
-
-import {allData} from 'Newentry.vue'
-
-
 export default {
   data() {
     return {
@@ -87,9 +83,7 @@ export default {
     };
   },
   components: {
-    allData : Array,
-    required: false
-  },
+  }, 
   props: {
     color: {
       default: "light",
