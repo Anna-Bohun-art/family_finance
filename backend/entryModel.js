@@ -2,15 +2,11 @@
 var mongoose = require('mongoose');
 //schema
 var entrySchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },/*
-    description: {
+    value: {
         type: String,
         required: true
     },
-    value: {
+    store: {
         type: String,
         required: true
     },
@@ -21,7 +17,7 @@ var entrySchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    },*/
+    },
     created_at: {
         type: Date,
         default: Date.now

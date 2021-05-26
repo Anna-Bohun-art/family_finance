@@ -116,7 +116,7 @@ export default {
       if (this.date !== null && this.store !== null && this.type !== null && this.value !== null) {
         this.allData.push( [this.date, this.store, this.type, this.value] );
         console.log(this.allData);
-        this.$http.post('http://localhost:8081/report', {
+        this.$http.post('http://localhost:8081/api/entry', {
           date: this.date,
           store: this.store,
           type: this.type,
@@ -128,6 +128,7 @@ export default {
             this.clearForm();
           })
           .catch((error) => {
+            console.log('ERROR imput!');
             console.log(error);
           });
         }

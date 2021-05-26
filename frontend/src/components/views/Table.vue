@@ -20,6 +20,7 @@
       <table class="items-center w-full bg-transparent border-collapse">
         <thead>
           <tr>
+            <th></th>
             <th
               class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
               :class="[
@@ -63,7 +64,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(entry, i) in sortedList" :key="i">
+          <tr v-for="(entry, i) in allData" :key="i">
             <th scope="row">{{ ++i }}</th>
             <td>{{ entry.date }}</td>
             <td>{{ entry.store }}</td>
@@ -79,11 +80,10 @@
 export default {
   data() {
     return {
-      
+      allData: [],
     };
   },
-  components: {
-  }, 
+  components: {}, 
   props: {
     color: {
       default: "light",
@@ -91,6 +91,23 @@ export default {
         // The value must match one of these strings
         return ["light", "dark"].indexOf(value) !== -1;
       },
+    },
+  },
+  async created() {
+    await this.getEntries();
+  },
+  methods: {
+    async getEntries() {
+      this.$http.get('http://localhost:8081/api/entry')
+      .then((response) => {
+        console.log('Success imput!');
+        console.log(response.data.data);
+        this.allData = response.data.data;
+      })
+      .catch((error) => {
+        console.log('ERROR imput!');
+        console.log(error);
+      });
     },
   },
 };
