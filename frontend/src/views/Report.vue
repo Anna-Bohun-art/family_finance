@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import Table from "@/components/views/Table.vue";
+import Table from "@/views/Table.vue";
 
 export default {
   components: {

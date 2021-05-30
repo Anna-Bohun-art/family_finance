@@ -14,22 +14,22 @@ import App from '@/App';
 // layouts
 
 // import Admin from '@/layouts/Admin.vue';
-import Auth from '@/components/pages/Auth';
+import Auth from '@/pages/Auth';
 
 
 // views for Auth layout
 
-import Login from '@/components/views/Login';
-import Register from '@/components/views/Register';
+import Login from '@/views/Login';
+import Register from '@/views/Register';
 
 // views without layouts
 
-import Profile from '@/components/views/Profile';
-import Newentry from '@/components/views/Newentry';
-import Report from '@/components/views/Report';
-import Dashboard from '@/components/views/Dashboard';
-import Userspace from '@/components/pages/UserSpace';
-import Logout from '@/components/views/Logout'
+import Profile from '@/views/Profile';
+import Newentry from '@/views/Newentry';
+import Report from '@/views/Report';
+import Dashboard from '@/views/Dashboard';
+import Userspace from '@/pages/UserSpace';
+import Logout from '@/views/Logout'
 // routes
 
 const routes = [

@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto px-4 h-full">
+    <AlertComp :title="errorText" :showAlert='showAlert'></AlertComp>
     <div class="flex content-center items-center justify-center h-full">
       <div class="w-full lg:w-6/12 px-4">
         <div
@@ -96,14 +97,19 @@
   </div>
 </template>
 <script>
+import AlertComp from "@/components/alert/AlertComp.vue"
+
 export default {
   name: "App",
+  components: { AlertComp },
   data() {
     return {
       username: "",
       email: "",
       password: "",
-      repeatPassword: ""
+      repeatPassword: "",
+      errorText: "",
+      showAlert: false,
     };
   },
   methods: {
@@ -111,10 +117,15 @@ export default {
       console.log('handleRegister');
       e.preventDefault();
       if (this.email.length < 6 || this.password.length < 6) {
-        alert('This email or password is not valid. Please use 6 digit password');
+        this.errorText = 'This email or password is not valid. Please use 6 digit password';
+        this.showAlert = true;
+        console.log('This email or password is not valid. Please use 6 digit password')
+        //alert('This email or password is not valid. Please use 6 digit password');
         return;
       }
       if (this.password !== this.repeatPassword) {
+        this.errorText = 'Your password is not valid. Please, try again';
+        this.showAlert = true;
         alert('Your password is not valid. Please, try again');
         return;
       }

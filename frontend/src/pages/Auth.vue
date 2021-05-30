@@ -4,9 +4,9 @@
     <main>
       <section class="relative w-full h-full py-40 min-h-screen">
         <div
-          class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
-          :style="`background-image: url('${registerBg}');`"
-        ></div>
+          class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full">
+          <!--:style="`background-image: url('${registerBg}');`"-->
+        </div>
         <router-view />
         <Footer />
       </section>
@@ -15,12 +15,13 @@
 </template>
 <script>
 import Footer from "@/components/footers/Footer";
-import registerBg from "@/assets/image/register_bg.png";
+//import registerBg from "@/assets/image/register_bg.png";
+
 
 export default {
   data() {
     return {
-      registerBg,
+      //registerBg,
     };
   },
   components: {

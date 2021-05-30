@@ -64,7 +64,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(entry, i) in allData" :key="i">
+          <tr class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          v-for=" (entry, i) in allData" :key="i">
             <th scope="row">{{ ++i }}</th>
             <td>{{ entry.date }}</td>
             <td>{{ entry.store }}</td>
