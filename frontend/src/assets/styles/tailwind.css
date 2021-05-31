@@ -1421,6 +1421,7 @@ select {
 .bg-blueGray-800 {
   --tw-bg-opacity: 1;
   background-color: rgba(30, 41, 59, var(--tw-bg-opacity));
+  z-index: -1
 }
 
 .focus\:bg-white:focus {
