@@ -11,7 +11,7 @@
 </template>
 <script>
 import SideBarMenu from "@/components/bars/SideBarMenu";
-import Footer from "@/components/footers/Footer";
+import Footer from "@/components/Footers/Footer";
 import registerBg from "@/assets/image/register_bg.png";
 
 export default {
