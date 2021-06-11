@@ -4285,3 +4285,12 @@ select {
 .options:hover{
   background-color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
+.hasError label {
+  color: red;
+}
+.hasError input{
+  border-color: red;
+}
+.hasError error {
+  color: red;
+}

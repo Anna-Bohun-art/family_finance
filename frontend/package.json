@@ -19,6 +19,8 @@
     "@tailwindcss/forms": "0.2.1",
     "@vue/compiler-sfc": "3.0.7",
     "@vueform/multiselect": "^1.5.0",
+    "@vuelidate/core": "^2.0.0-alpha.18",
+    "@vuelidate/validators": "^2.0.0-alpha.15",
     "axios": "^0.21.1",
     "chart.js": "2.9.4",
     "core-js": "3.9.1",
@@ -29,24 +31,26 @@
     "vue-axios": "^3.2.4",
     "vue-multiselect": "^2.1.6",
     "vue-resource": "^1.5.2",
-    "vue-router": "4.0.5"
+    "vue-router": "4.0.5",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
     "@babel/eslint-parser": "7.13.10",
     "@vue/cli-plugin-babel": "5.0.0-alpha.7",
     "@vue/cli-plugin-eslint": "5.0.0-alpha.7",
-    "@vue/cli-service": "5.0.0-alpha.7",
+    "@vue/cli-service": "^5.0.0-beta.2",
     "autoprefixer": "10.2.5",
-    "eslint": "7.22.0",
-    "eslint-plugin-vue": "7.7.0",
-    "postcss": "8.2.8",
-    "vue-template-compiler": "2.6.12",
+    "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^11.3.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.7.0"
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-vue": "7.7.0",
+    "postcss": "^8.3.2",
+    "vue-template-compiler": "2.6.12",
+    "webpack-cli": "^4.7.2"
   },
   "eslintConfig": {
     "root": true,

@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto px-4 h-full">
-    <AlertComp :title="errorText" :showAlert="showAlert"/>
+    <!--<AlertComp :title="errorText" :showAlert="showAlert"/>-->
     <div class="flex content-center items-center justify-center h-full">
       <div class="w-full lg:w-4/12 px-4">
         <div
@@ -23,7 +23,7 @@
                   required
                 />
               </div>
-              <div class="relative w-full mb-3">
+              <div class="relative w-full mb-1">
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Store
                 </label>
@@ -92,11 +92,11 @@
 <script>
 import Multiselect from "@vueform/multiselect";
 import axios from "axios";
-import AlertComp from "@/components/alert/AlertComp.vue";
+//import AlertComp from "@/components/alert/AlertComp.vue";
 
 export default {
   name: "NewEntry",
-  components: { Multiselect, AlertComp },
+  components: { Multiselect },
   data() {
     return {
       options: ["food", "kids", "house", "cars", "else"],
@@ -105,7 +105,6 @@ export default {
       type: null,
       value: "",
       allData: [],
-      showAlert: false,
       errorText:''
     };
   },

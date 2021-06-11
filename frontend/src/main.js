@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+
 // styles
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -10,6 +11,7 @@ import '@/assets/styles/tailwind.css';
 // mouting point for the whole app
 
 import App from '@/App';
+import {useVuelidate} from '@vuelidate/core'
 
 // layouts
 
@@ -119,4 +121,4 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-createApp(App).use(router).use(VueAxios, axios).mount('#app');
+createApp(App).use(router).use(VueAxios, axios).use(useVuelidate).mount('#app');
