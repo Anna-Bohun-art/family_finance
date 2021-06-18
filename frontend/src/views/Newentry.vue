@@ -7,8 +7,8 @@
           class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
         >
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <div class="text-blueGray-400 text-center mb-3 font-bold">
-              <small>New Entry</small>
+            <div class="text-blueGray-400 text-center mb-4 font-bold">
+              <h3>New Entry</h3>
             </div>
             <form>
               <div class="relative w-full mb-3">
@@ -35,12 +35,12 @@
                   required
                 />
               </div>
-              <div class="relative w-full mb-3">
+              <div class="pb-0 relative w-full mb-3">
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Type
                 </label>
                 <Multiselect
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                class= "placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-multiselect shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   v-model="type"
                   placeholder="Select one"
                   :options="options"
@@ -48,18 +48,7 @@
                   label="name"
                   :searchable="true"
                   required
-                >
-                  <template v-slot:singleLabel="{ type }">
-                    <div class="multiselect-single-label">
-                      <img height="26" style="margin: 0 6px 0 0" :src="value.icon" />
-                      {{ type.name }}
-                    </div>
-                  </template>
-                  <template v-slot:option="{ option }">
-                    <img height="22" style="margin: 0 6px 0 0" />{{ option.name }}
-                  </template>
-                  <!--<template slot="singleLabel" slot-scope="{ option }"><strong>{{ option.id }}</strong> is written in<strong>  {{ option.name }}</strong></template>-->
-                </Multiselect>
+                />
               </div>
               <div class="relative w-full mb-3">
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -92,10 +81,10 @@
 <script>
 import Multiselect from "@vueform/multiselect";
 import axios from "axios";
-//import AlertComp from "@/components/alert/AlertComp.vue";
 
 export default {
   name: "NewEntry",
+  /*props: [allData],*/
   components: { Multiselect },
   data() {
     return {

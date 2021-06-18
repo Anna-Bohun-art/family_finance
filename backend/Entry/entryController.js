@@ -48,6 +48,34 @@ exports.view = function (req, res) {
     });
 };
 
+// View Month Entry
+exports.monthView = function (req, res) {
+    const resultType = ['Essen', 'Haus', 'Autos', 'Kinder', 'Reise'];
+    const valuesType = [600, 1500, 300, 100, 150];
+    const response = {
+        "types": resultType,
+        "values": valuesType
+    };
+
+    return res.json({
+        status: "success",
+        data: response       
+    });
+
+    Entry.find({createdAt: { $gte: new Date(2021, 5, 1), $lte:new Date()}}, function (err, posts) {
+        if (err)
+            return res.json({
+                status: "error",
+                message: err
+            });
+
+        return res.json({
+            status: "success",
+            data: res       
+        });
+    });
+};
+
 // Update Entry
 exports.update = function (req, res) {
     Entry.findById(req.params.entry_id, function (err, entry) {

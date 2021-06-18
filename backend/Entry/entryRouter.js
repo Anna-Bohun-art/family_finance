@@ -17,6 +17,9 @@ router.route('/entry')
     .get(entryController.index)
     .post(entryController.add);
 
+    router.route('/entry/month')
+    .get(entryController.monthView)
+
     router.route('/entry/:entry_id')
     .get(entryController.view)
     .patch(entryController.update)

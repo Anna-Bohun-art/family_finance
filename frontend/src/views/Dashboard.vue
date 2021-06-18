@@ -4,17 +4,20 @@
       <h3 class="font-semibold text-base text-blueGray-700">
         Dashboard
       </h3>
+      <BarChart />
     </div>
   </div>
 </template>
-<script>
-export default ({
-  name: 'dashboard',
-  data(){
-    
-  },
-  methods: {
 
-  }
-})
+<script>
+import BarChart from '@/views/BarChart.vue'
+
+export default {
+  name: 'Dashboard',
+  components: { BarChart },
+  data() {
+    return {
+    };
+  },
+}
 </script>

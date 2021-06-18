@@ -2204,6 +2204,9 @@ select {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-multiselect {
+  font-size: 0.875rem;
+}
 
 .text-sm {
   font-size: 0.875rem;

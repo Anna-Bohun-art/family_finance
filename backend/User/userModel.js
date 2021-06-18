@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
     },
     name: {
         type: String,
+        required: true
     },
     admin: {
         type: Boolean,

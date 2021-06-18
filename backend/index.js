@@ -3,8 +3,8 @@ const express = require('express');
 var cors = require('cors')
 
 let app = express();
-let apiRoutes = require("./entryRouter")
-let userRoutes = require("./userRouter")
+let apiRoutes = require("./Entry/entryRouter")
+let userRoutes = require("./User/userRouter")
 var port = process.env.PORT || 8081;
 
 // Launch app to the specified port

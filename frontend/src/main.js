@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import { createWebHistory, createRouter } from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
@@ -7,6 +7,7 @@ import VueAxios from 'vue-axios';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '@/assets/styles/tailwind.css';
+
 
 // mouting point for the whole app
 
@@ -32,6 +33,7 @@ import Report from '@/views/Report';
 import Dashboard from '@/views/Dashboard';
 import Userspace from '@/pages/UserSpace';
 import Logout from '@/views/Logout'
+
 // routes
 
 const routes = [
