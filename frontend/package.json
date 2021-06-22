@@ -24,6 +24,7 @@
     "axios": "^0.21.1",
     "chart.js": "2.9.3",
     "core-js": "3.9.1",
+    "fuzzaldrin-plus": "^0.6.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "tailwindcss": "2.0.4",

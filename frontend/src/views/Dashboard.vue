@@ -15,7 +15,7 @@ import BarChart from '@/views/BarChart.vue'
 export default {
   name: 'Dashboard',
   components: { BarChart },
-  data() {
+  data()  {
     return {
     };
   },

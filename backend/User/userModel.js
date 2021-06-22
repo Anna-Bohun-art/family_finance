@@ -33,3 +33,4 @@ module.exports.findByEmail = function (mail) {
 module.exports.get = function (callback, limit) {
     User.find(callback).limit(limit);
 }
+

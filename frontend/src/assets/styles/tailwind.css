@@ -2556,6 +2556,9 @@ select {
 .max-w-210-px {
   max-width: 210px;
 }
+.max-w-500-px {
+  max-width: 300px;
+}
 
 .max-w-580-px {
   max-width: 580px;

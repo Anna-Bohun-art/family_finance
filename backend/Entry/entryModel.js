@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 //schema
 var entrySchema = mongoose.Schema({
     value: {
-        type: String,
+        type: Number,
         required: true
     },
     store: {

@@ -54,18 +54,16 @@ export default {
             {
               label: new Date().getFullYear(),
               backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(68, 34, 86)',
-                'rgb(190, 90, 86)'
+                '#71717a',
+                '#2563eb',
+                'rgba(167, 243, 208',
+                'rgba(249, 115, 22'
               ],
               borderColor:[
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(68, 34, 86)',
-                'rgb(190, 90, 86)'
+                '#71717a',
+                '#2563eb',
+                'rgba(167, 243, 208',
+                'rgba(249, 115, 22'
               ],
               data: this.allData.values,
               fill: true,

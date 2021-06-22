@@ -1,3 +1,5 @@
+const { Model } = require('mongoose');
+
 //Import Entry Model
 Entry = require('./entryModel');
 
@@ -50,31 +52,74 @@ exports.view = function (req, res) {
 
 // View Month Entry
 exports.monthView = function (req, res) {
-    const resultType = ['Essen', 'Haus', 'Autos', 'Kinder', 'Reise'];
-    const valuesType = [600, 1500, 300, 100, 150];
-    const response = {
-        "types": resultType,
-        "values": valuesType
-    };
+    const endDate = new Date();
+    const startDate = new Date(endDate.getFullYear(), endDate.getMonth(), "01");
+    
+    console.log('startDate: ', startDate);
+    console.log('endDate: ', endDate);
 
-    return res.json({
-        status: "success",
-        data: response       
-    });
-
-    Entry.find({createdAt: { $gte: new Date(2021, 5, 1), $lte:new Date()}}, function (err, posts) {
-        if (err)
-            return res.json({
-                status: "error",
-                message: err
+    Entry.aggregate(
+        [{
+            $match: {
+                "created_at": {
+                    $gte: startDate, 
+                    $lte: endDate
+                }
+            }
+        }, 
+        {
+            $group: {
+                _id: "$type", 
+                value: { 
+                    $sum: "$value"
+                },
+            }
+        }], function(err, result) {
+            console.log('result: ', result);
+            const respType = [];
+            const respValues = [];
+            result.forEach(entry => {
+                respType.push(entry._id);
+                respValues.push(entry.value);
             });
 
-        return res.json({
-            status: "success",
-            data: res       
-        });
-    });
+            return res.json({
+                status: 200,
+                data: {
+                    types: respType,
+                    values: respValues,
+                }       
+            });
+        }
+    );
 };
+        /*let tmp = [];
+        entries.forEach(entry => {
+            prevValue = tmp[entry.type] !== undefined ? tmp[entry.type].value : 0;
+            tmp[entry.type] = {
+                type: entry.type,
+                value: prevValue + parseInt(entry.value)
+            };
+        });
+        const responseType = [];
+        const responseValues = [];
+        console.log('tmp: ', tmp);
+        console.log('tmp.length: ', tmp.length);
+        for (let index = 0; index < tmp.length; index++) {
+            const entry = array[index];
+            console.log('entry: ', entry);
+            responseType.push(entry.type);
+            responseValues.push(entry.value);
+        }
+        console.log('responseType: ', responseType);
+        console.log('responseValues: ', responseValues);
+        const response = { types: responseType, values: responseValues };
+        console.log('response: ', response);
+        return res.json({
+            status: 200,
+            data: response       
+        });*/
+        
 
 // Update Entry
 exports.update = function (req, res) {
